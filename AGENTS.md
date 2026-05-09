@@ -146,6 +146,7 @@ For significant misses, regressions, or repeated mistakes:
 
 - Review existing postmortems before touching related code.
 - Follow `postmortem/AGENTS.md` when creating or updating postmortems.
+- Follow `docs/agents.md` when creating or updating agent work artifacts such as feature plans, prompt notes, bugfix investigations, or execution summaries.
 - Keep `README.md`, `AGENTS.md`, and `postmortem/README.md` aligned when workflow or structure changes.
 
 Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Under 300 is a good ceiling. Over 500 and you are fighting your own config.
@@ -172,7 +173,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Project root: TODO
 - Source: TODO
 - Tests: TODO
-- Docs: TODO
+- Docs: `docs/agents.md` defines agent work artifact rules; `postmortem/` contains the postmortem workflow.
 
 ### Conventions
 - TODO: Add project conventions after they are visible in code or config.

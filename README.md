@@ -4,7 +4,7 @@ Reusable starter for installing and maintaining a shared `AGENTS.md` instruction
 
 ## Purpose
 
-This project keeps a base `AGENTS.md` template plus compatibility files for tools that read `CLAUDE.md` or `GEMINI.md`. It also includes a lightweight postmortem workflow so projects can turn mistakes into durable rules and action items.
+This project keeps a base `AGENTS.md` template plus compatibility files for tools that read `CLAUDE.md` or `GEMINI.md`. It also includes lightweight workflows for agent work artifacts and postmortems so projects can keep plans, prompts, fixes, and durable lessons organized.
 
 ## Install Instructions for New Projects
 
@@ -47,6 +47,8 @@ Copy `postmortem/README.md` into the project if it does not already exist. If th
 - Update `postmortem/README.md` whenever adding or renaming a postmortem.
 - Keep `README.md`, `AGENTS.md`, and `postmortem/README.md` aligned when workflow or structure changes.
 
+Copy `docs/agents.md` into the project if the team wants agents to keep work artifacts. Store real files under direct classification folders such as `docs/agents/features/`, `docs/agents/prompts/`, or `docs/agents/bugfixes/`. Do not create empty placeholder directories.
+
 When done, tell the user to restart the session so the file loads.
 
 ## Current Files
@@ -54,6 +56,7 @@ When done, tell the user to restart the session so the file loads.
 - `AGENTS.md`: Base agent instructions with project context in section 10.
 - `CLAUDE.md`: Symlink to `AGENTS.md`.
 - `GEMINI.md`: Symlink to `AGENTS.md`.
+- `docs/agents.md`: Rules for agent work artifacts, status, and source of truth.
 - `postmortem/AGENTS.md`: Directory-specific instructions for postmortem creation and updates.
 - `postmortem/README.md`: Reusable postmortem index and template.
 - `README.md`: This project guide and install checklist.
