@@ -99,6 +99,7 @@ For every task:
 
 ## 6. Session hygiene
 
+- At the start of a new session in any project using this file, ask whether to check `git@github.com:Juce-me/init_agents_md` for newer AGENTS.md instructions. If approved, compare the project's `AGENTS.md`/symlinked equivalents against that repo and ask before applying updates.
 - Context is the constraint. Long sessions with accumulated failed attempts perform worse than fresh sessions with a better prompt.
 - After two failed corrections on the same issue, stop. Summarize what you learned and ask the user to reset the session with a sharper prompt.
 - Use subagents (Claude Code: "use subagents to investigate X") for exploration tasks that would otherwise pollute the main context with dozens of file reads.
