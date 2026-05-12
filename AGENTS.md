@@ -43,6 +43,7 @@ These rules override everything else in this file when in conflict:
 
 - No features beyond what was asked.
 - No abstractions for single-use code. No configurability, flexibility, or hooks that were not requested.
+- Reuse existing design elements. If a style, component, token, or pattern for what you need already exists in the project, use it. Do not create a parallel variant, a one-off override, or a new design primitive when the established one fits.
 - No error handling for impossible scenarios. Handle the failures that can actually happen.
 - If the solution runs 200 lines and could be 50, rewrite it before showing it.
 - If you find yourself adding "for future extensibility", stop. Future extensibility is a future decision.
