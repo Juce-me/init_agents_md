@@ -61,6 +61,7 @@ The test: would a senior engineer reading the diff call this overcomplicated? If
 - Do not delete pre-existing dead code unless asked. If you notice it, mention it in the summary.
 - Do clean up orphans created by your own changes (unused imports, variables, functions your edit made obsolete).
 - Match the project's existing style exactly: indentation, quotes, naming, file layout.
+- Place new files in the appropriate top-level subfolder (e.g., `assets/` for static assets, `scripts/` for tooling and automation, `src/` for sources, `tests/` for tests, `docs/` for documentation) instead of the project root. If the project has an established layout, follow it; otherwise use these defaults. Create a folder only when adding its first real file. Do not commit empty placeholders, `.keep` files, or scaffold directories.
 
 The test: every changed line traces directly to the user's request. If a line fails that test, revert it.
 
