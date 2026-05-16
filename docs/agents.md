@@ -39,6 +39,16 @@ Allowed statuses:
 
 If a file does not clearly say whether it was planned or executed, fix that before using it as context.
 
+## Plan Requirements
+
+Every plan must make the intended work unambiguous. Include:
+
+- What exactly changes.
+- Forbidden regressions.
+- Files allowed to touch.
+- Expected behavior.
+- Acceptance criteria.
+
 ## Source Of Truth
 
 Before execution, the artifact is the source of truth for intended work.
