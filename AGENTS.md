@@ -32,9 +32,12 @@ These rules override everything else in this file when in conflict:
 **Goal: understand the problem and the codebase before producing a diff.**
 
 - State your plan in one or two sentences before editing. For anything non-trivial, produce a numbered list of steps with a verification check for each.
+- Do not create persistent agent plan files unless explicitly needed; when needed, use `docs/agents/` per `docs/agents.md`, not `docs/superpowers/`.
 - Read the files you will touch. Read the files that call the files you will touch. Claude Code: use subagents for exploration so the main context stays clean.
 - Match existing patterns in the codebase. If the project uses pattern X, use pattern X, even if you'd do it differently in a greenfield repo.
+- Do not discard prior architecture constraints. Treat existing boundaries, public contracts, migration paths, and explicit decisions as requirements unless the user changes them.
 - Surface assumptions out loud: "I'm assuming you want X, Y, Z. If that's wrong, say so." Do not bury assumptions inside the implementation.
+- If context becomes uncertain, stop and state uncertainty. Say what is unknown, stale, or conflicting, then ask or verify before proceeding.
 - If two approaches exist, present both with tradeoffs. Do not pick one silently. Exception: trivial tasks (typo, rename, log line) where the diff fits in one sentence.
 
 ---
@@ -48,6 +51,7 @@ These rules override everything else in this file when in conflict:
 - Reuse existing design elements. If a style, component, token, or pattern for what you need already exists in the project, use it. Do not create a parallel variant, a one-off override, or a new design primitive when the established one fits.
 - No error handling for impossible scenarios. Handle the failures that can actually happen.
 - If the solution runs 200 lines and could be 50, rewrite it before showing it.
+- Do not simplify implementation for brevity. Prefer the shortest correct implementation, but never remove required behavior, architectural constraints, or edge-case handling just to shorten code or explanation.
 - If you find yourself adding "for future extensibility", stop. Future extensibility is a future decision.
 - Bias toward deleting code over adding code. Shipping less is almost always better.
 
@@ -96,6 +100,7 @@ For every task:
 - Never report "done" based on a plausible-looking diff alone. Plausibility is not correctness.
 - When debugging, address root causes, not symptoms. Suppressing the error is not fixing the error.
 - For UI changes, verify visually: screenshot before, screenshot after, describe the diff.
+- For Python work, always use a project-local virtual environment. Prefer an existing `.venv`; create `.venv` if missing before installing dependencies or running Python tools. Do not install packages into system Python.
 - Use CLI tools (gh, aws, gcloud, kubectl) when they exist. They are more context-efficient than reading docs or hitting APIs unauthenticated.
 - When reading logs, errors, or stack traces, read the whole thing. Half-read traces produce wrong fixes.
 
