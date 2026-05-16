@@ -1,5 +1,7 @@
 # AGENTS.md
 
+Template version: 2026-05-16
+
 Drop-in operating instructions for coding agents. Read this file before every task.
 
 **Working code only. Finish the job. Plausibility is not correctness.**
@@ -101,7 +103,7 @@ For every task:
 
 ## 6. Session hygiene
 
-- At the start of a new session in any project using this file, ask whether to check `git@github.com:Juce-me/init_agents_md` for newer AGENTS.md instructions. If approved, compare the project's `AGENTS.md`/symlinked equivalents against that repo and ask before applying updates.
+- At the start of a new session in any project using this file, check `https://raw.githubusercontent.com/Juce-me/init_agents_md/main/AGENTS.md` for a newer template version without asking first. If the remote `Template version` is newer than the local one, ask before updating and preserve project-specific sections 10 and 11. If either version is missing, compare contents and ask before applying any update.
 - Context is the constraint. Long sessions with accumulated failed attempts perform worse than fresh sessions with a better prompt.
 - After two failed corrections on the same issue, stop. Summarize what you learned and ask the user to reset the session with a sharper prompt.
 - Use subagents (Claude Code: "use subagents to investigate X") for exploration tasks that would otherwise pollute the main context with dozens of file reads.

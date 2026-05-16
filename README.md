@@ -4,7 +4,7 @@ Reusable starter for installing and maintaining a shared `AGENTS.md` instruction
 
 ## Purpose
 
-This project keeps a base `AGENTS.md` template plus compatibility files for tools that read `CLAUDE.md` or `GEMINI.md`. It also includes lightweight workflows for agent work artifacts and postmortems so projects can keep plans, prompts, fixes, and durable lessons organized.
+This project keeps a versioned base `AGENTS.md` template plus compatibility files for tools that read `CLAUDE.md` or `GEMINI.md`. It also includes lightweight workflows for agent work artifacts and postmortems so projects can keep plans, prompts, fixes, and durable lessons organized.
 
 ## Install Instructions for New Projects
 
@@ -13,6 +13,8 @@ To install, copy-paste in your vibe-coding environment:
 > Install <https://github.com/Juce-me/init_agents_md> into this project.
 >
 > Fetch <https://raw.githubusercontent.com/Juce-me/init_agents_md/main/AGENTS.md> and save it as `./AGENTS.md` at the project root. If `AGENTS.md` already exists, stop and show the diff before overwriting.
+>
+> Keep the `Template version:` line intact. Future agent sessions use it to check upstream automatically and only ask before applying a newer version.
 >
 > Symlink `CLAUDE.md` and `GEMINI.md` to `AGENTS.md` so Claude Code and Gemini CLI read the same file. Use the right command for the OS:
 >
@@ -55,7 +57,7 @@ To install, copy-paste in your vibe-coding environment:
 
 ## Current Files
 
-- `AGENTS.md`: Base agent instructions with project context in section 10.
+- `AGENTS.md`: Versioned base agent instructions with project context in section 10.
 - `CLAUDE.md`: Symlink to `AGENTS.md`.
 - `GEMINI.md`: Symlink to `AGENTS.md`.
 - `docs/agents.md`: Rules for agent work artifacts, status, and source of truth.
