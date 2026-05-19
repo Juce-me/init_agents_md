@@ -21,6 +21,25 @@ Do not add empty or placeholder folder layers. Use `docs/agents/features/example
 
 Create a classification folder only when adding a real file inside it. Do not commit empty directories, `.keep` files, or placeholder READMEs just to preserve the taxonomy.
 
+## File Naming
+
+Name every artifact with the `date-status-summary.md` format:
+
+```text
+YYYY-MM-DD-status-summary.md
+```
+
+- `YYYY-MM-DD`: creation date in the project's local timezone.
+- `status`: one of `planned`, `in-progress`, `executed`, or `obsolete`.
+- `summary`: short, lowercase, and hyphen-separated.
+
+Examples:
+
+- `2026-05-18-planned-cache-rewrite.md`
+- `2026-05-18-executed-cache-rewrite.md`
+
+When status changes, rename the file so the filename and top-level `Status:` line agree. Update links that pointed to the old name.
+
 ## Required Status
 
 Every artifact must state whether it is planned, active, executed, or obsolete near the top:
@@ -48,6 +67,8 @@ Every plan must make the intended work unambiguous. Include:
 - Files allowed to touch.
 - Expected behavior.
 - Acceptance criteria.
+
+If Superpowers is active, create implementation plans with `writing-plans` and execute them with `subagent-driven-development` when available or `executing-plans` otherwise. This file's location and naming rules still apply unless the user explicitly chooses another path.
 
 ## Source Of Truth
 
@@ -80,6 +101,11 @@ Use one of these outcome meanings:
 
 When starting work from an artifact, read its status and current accuracy first.
 
-When completing work, update the artifact to `executed` or `obsolete` before ending the session.
+When completing work, update documentation before ending the session:
+
+- Rename the artifact so its filename status matches the final status.
+- Update the artifact to `executed` or `obsolete`.
+- Add or refresh `Outcome` and `Current Accuracy`.
+- Update the implementation plan, `README.md`, and affected product or project docs so they match the shipped result.
 
 When a later change makes an executed artifact inaccurate, either update its `Current Accuracy` section or mark it `obsolete`. Do not leave stale plans looking authoritative.

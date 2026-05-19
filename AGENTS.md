@@ -6,12 +6,16 @@ Drop-in operating instructions for coding agents. Read this file before every ta
 
 **Working code only. Finish the job. Plausibility is not correctness.**
 
-This file follows the [AGENTS.md](https://agents.md) open standard (Linux Foundation / Agentic AI Foundation). Claude Code, Codex, Cursor, Windsurf, Copilot, Aider, Devin, Amp read it natively. For tools that look elsewhere, symlink:
+This file follows the [AGENTS.md](https://agents.md) open standard (Linux Foundation / Agentic AI Foundation). Claude Code, Codex, Cursor, Windsurf, Copilot, Aider, Devin, Amp read it natively. For tools that look elsewhere, symlink at the project root:
 
 ```bash
 ln -s AGENTS.md CLAUDE.md
 ln -s AGENTS.md GEMINI.md
 ```
+
+For any directory-specific `AGENTS.md`, create the same colocated `CLAUDE.md` and `GEMINI.md` symlinks from that subfolder.
+
+When the agent runtime supports Superpowers, install or enable it for the project on first start and invoke `using-superpowers` before ordinary task handling. If Superpowers is unavailable, say so explicitly and continue with this file as the fallback.
 
 ---
 
@@ -33,6 +37,7 @@ These rules override everything else in this file when in conflict:
 
 - State your plan in one or two sentences before editing. For anything non-trivial, produce a numbered list of steps with a verification check for each.
 - Do not create persistent agent plan files unless explicitly needed; when needed, use `docs/agents/` per `docs/agents.md`, not `docs/superpowers/`.
+- If Superpowers is active, use the relevant Superpowers skills for planning and execution. Use `writing-plans` for implementation plans, then `subagent-driven-development` when available or `executing-plans` for plan execution.
 - Read the files you will touch. Read the files that call the files you will touch. Claude Code: use subagents for exploration so the main context stays clean.
 - Match existing patterns in the codebase. If the project uses pattern X, use pattern X, even if you'd do it differently in a greenfield repo.
 - Do not discard prior architecture constraints. Treat existing boundaries, public contracts, migration paths, and explicit decisions as requirements unless the user changes them.
@@ -48,7 +53,7 @@ These rules override everything else in this file when in conflict:
 
 - No features beyond what was asked.
 - No abstractions for single-use code. No configurability, flexibility, or hooks that were not requested.
-- Reuse existing design elements. If a style, component, token, or pattern for what you need already exists in the project, use it. Do not create a parallel variant, a one-off override, or a new design primitive when the established one fits.
+- Reuse existing design elements. If a style, component, token, or pattern for what you need already exists in the project, use it. When changing reusable UI, docs, prompts, or workflow behavior, update the shared component, token, template, or instruction instead of creating a one-off local variant.
 - No error handling for impossible scenarios. Handle the failures that can actually happen.
 - If the solution runs 200 lines and could be 50, rewrite it before showing it.
 - Do not simplify implementation for brevity. Prefer the shortest correct implementation, but never remove required behavior, architectural constraints, or edge-case handling just to shorten code or explanation.
@@ -68,6 +73,7 @@ The test: would a senior engineer reading the diff call this overcomplicated? If
 - Do not delete pre-existing dead code unless asked. If you notice it, mention it in the summary.
 - Do clean up orphans created by your own changes (unused imports, variables, functions your edit made obsolete).
 - Match the project's existing style exactly: indentation, quotes, naming, file layout.
+- Put reusable project rules at the highest applicable level. Use subfolder `AGENTS.md` files only for stricter local instructions, and keep `CLAUDE.md` and `GEMINI.md` symlinked to the local `AGENTS.md`.
 - Place new files in the appropriate top-level subfolder (e.g., `assets/` for static assets, `scripts/` for tooling and automation, `src/` for sources, `tests/` for tests, `docs/` for documentation) instead of the project root. If the project has an established layout, follow it; otherwise use these defaults. Create a folder only when adding its first real file. Do not commit empty placeholders, `.keep` files, or scaffold directories.
 
 The test: every changed line traces directly to the user's request. If a line fails that test, revert it.
@@ -91,6 +97,7 @@ For every task:
 2. Write the verification (test, script, benchmark, screenshot diff) where practical.
 3. Run the verification. Read the output. Do not claim success without checking.
 4. If the verification fails, fix the cause, not the test.
+5. Before ending execution from a plan or docs artifact, update the artifact, implementation plan, README, and affected docs to match the result.
 
 ---
 
@@ -191,8 +198,10 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Docs: `docs/agents.md` defines agent work artifact rules; `postmortem/` contains the postmortem workflow.
 
 ### Conventions
-- TODO: Add project conventions after they are visible in code or config.
-- Keep `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` aligned; `CLAUDE.md` and `GEMINI.md` should point to `AGENTS.md`.
+- Reusable rules and design guidance belong at the highest applicable `AGENTS.md`; subfolder `AGENTS.md` files are for local constraints only.
+- Keep `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` aligned at the root and in subfolders; `CLAUDE.md` and `GEMINI.md` should point to the local `AGENTS.md`.
+- Agent work artifacts under `docs/agents/` use `YYYY-MM-DD-status-summary.md` per `docs/agents.md`.
+- TODO: Add additional project conventions after they are visible in code or config.
 
 ### Repo-specific constraints
 - TODO: Add constraints only after they are verified for this project.
