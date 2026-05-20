@@ -26,28 +26,44 @@ Create a classification folder only when adding a real file inside it. Do not co
 
 ## File Naming
 
-Name every artifact with the `date-status-summary.md` format:
+Name every artifact with a status prefix so the folder sorts by state at a glance:
 
 ```text
-YYYY-MM-DD-status-summary.md
+STATUS-summary.md
+STATUS-YYYY-MM-DD-summary.md   (when creation date carries meaning)
 ```
 
-- `YYYY-MM-DD`: creation date in the project's local timezone.
-- `status`: one of `planned`, `in-progress`, `executed`, or `obsolete`.
+- `STATUS`: one of `PLANNED`, `IN-PROGRESS`, `EXECUTED`, `OBSOLETE`. Uppercase, exactly as written, so the boundary between status and summary is visible.
+- `YYYY-MM-DD` (optional): creation date in the project's local timezone. Include it when chronology matters for context; omit when it adds noise.
 - `summary`: short, lowercase, and hyphen-separated.
 
 Examples:
 
-- `2026-05-18-planned-cache-rewrite.md`
-- `2026-05-18-executed-cache-rewrite.md`
+- `PLANNED-cache-rewrite.md`
+- `IN-PROGRESS-cache-rewrite.md`
+- `EXECUTED-2026-05-18-cache-rewrite.md`
+- `OBSOLETE-old-auth-flow.md`
 
-When status changes, rename the file so the filename and top-level `Status:` line agree. Update links that pointed to the old name.
+When status changes, rename the file so the filename and top-level `Status:` line agree. Update links that pointed to the old name. Do not leave a `PLANNED-*` file sitting next to its `EXECUTED-*` copy; the rename replaces, not duplicates.
+
+### No subfolder overrides
+
+A subfolder `AGENTS.md` may add stricter constraints (extra required fields, additional review steps, narrower allowed scopes) but **must not** redefine the naming scheme above or move artifacts out of `docs/agents/<class>/`. Naming and location are set here so that every project using this template stays consistent. If a project needs a genuinely different scheme, change this file at the template level — not in a local override.
+
+### Migration when conventions change
+
+If this naming scheme changes, every existing artifact must be either:
+
+- **Renamed** to the new scheme (preferred), or
+- **Marked `obsolete`** under its current name if it no longer reflects current direction.
+
+Do not leave two eras of naming side by side. A folder with both `2026-03-03-foo-design.md` and `EXECUTED-foo.md` is the failure mode this rule prevents: readers cannot tell which convention is current, and neither agents nor humans navigate it reliably. The migration is part of the convention change, not a follow-up task.
 
 ## Cross-References
 
 Link related context with stable references rather than free-form prose.
 
-- Cite sibling artifacts by relative path, e.g. `../bugfixes/2026-05-18-executed-cache-stale.md`.
+- Cite sibling artifacts by relative path, e.g. `../bugfixes/EXECUTED-cache-stale.md`.
 - Cite postmortems by relative path to the `postmortem/` directory.
 - Cite pull requests, commits, and issues with full URLs. If the same link appears repeatedly, define it once near the top of the artifact and reuse the reference.
 - Do not invent links. If a referenced artifact does not exist yet, say so explicitly instead of fabricating a path.

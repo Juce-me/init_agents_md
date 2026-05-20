@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-05-20
+Template version: 2026-05-21
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -73,7 +73,7 @@ The test: would a senior engineer reading the diff call this overcomplicated? If
 - Do not delete pre-existing dead code unless asked. If you notice it, mention it in the summary.
 - Do clean up orphans created by your own changes (unused imports, variables, functions your edit made obsolete).
 - Match the project's existing style exactly: indentation, quotes, naming, file layout.
-- Put reusable project rules at the highest applicable level. Use subfolder `AGENTS.md` files only for stricter local instructions, and keep `CLAUDE.md` and `GEMINI.md` symlinked to the local `AGENTS.md`.
+- Put reusable project rules at the highest applicable level. Subfolder `AGENTS.md` files may add stricter constraints but must not redefine artifact naming, location, or other rules set by the root template or `docs/agents.md` — if a different scheme is genuinely needed, change it at the template level so every project stays consistent. Keep `CLAUDE.md` and `GEMINI.md` symlinked to the local `AGENTS.md`.
 - Place new files in the appropriate top-level subfolder (e.g., `assets/` for static assets, `scripts/` for tooling and automation, `src/` for sources, `tests/` for tests, `docs/` for documentation) instead of the project root. If the project has an established layout, follow it; otherwise use these defaults. Create a folder only when adding its first real file. Do not commit empty placeholders, `.keep` files, or scaffold directories.
 
 The test: every changed line traces directly to the user's request. If a line fails that test, revert it.
@@ -200,7 +200,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 ### Conventions
 - Reusable rules and design guidance belong at the highest applicable `AGENTS.md`; subfolder `AGENTS.md` files are for local constraints only.
 - Keep `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` aligned at the root and in subfolders; `CLAUDE.md` and `GEMINI.md` should point to the local `AGENTS.md`.
-- Agent work artifacts under `docs/agents/` use `YYYY-MM-DD-status-summary.md` per `docs/agents.md`.
+- Agent work artifacts under `docs/agents/` use the `STATUS-summary.md` (or `STATUS-YYYY-MM-DD-summary.md`) naming defined in `docs/agents.md`. Subfolder `AGENTS.md` files cannot redefine this scheme.
 - TODO: Add additional project conventions after they are visible in code or config.
 
 ### Repo-specific constraints
