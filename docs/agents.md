@@ -16,6 +16,7 @@ Use one direct classification folder under `docs/agents/`:
 - `docs/agents/features/` for feature plans and implementation notes.
 - `docs/agents/prompts/` for prompt changes, prompt experiments, and prompt reviews.
 - `docs/agents/bugfixes/` for bug investigations, fixes, and verification notes.
+- `docs/agents/reviews/` for documentation reviews, code reviews, and review reports.
 
 Do not put agent work artifacts directly under `docs/` when they fit one of these classifications.
 
@@ -42,14 +43,26 @@ Examples:
 
 When status changes, rename the file so the filename and top-level `Status:` line agree. Update links that pointed to the old name.
 
-## Required Status and Type
+## Cross-References
 
-Every artifact must state status and type near the top:
+Link related context with stable references rather than free-form prose.
+
+- Cite sibling artifacts by relative path, e.g. `../bugfixes/2026-05-18-executed-cache-stale.md`.
+- Cite postmortems by relative path to the `postmortem/` directory.
+- Cite pull requests, commits, and issues with full URLs. If the same link appears repeatedly, define it once near the top of the artifact and reuse the reference.
+- Do not invent links. If a referenced artifact does not exist yet, say so explicitly instead of fabricating a path.
+
+## Required Header
+
+Every artifact must state status, type, and author near the top:
 
 ```markdown
 Status: planned
 Type: feature
+Author: <name-or-handle>
 ```
+
+`Author` identifies the human responsible for the artifact's current contents. Use a real handle. When an agent edits a human-owned artifact, the human remains the author; the edit is captured in git history, not in this field. Update `Author` only when ownership actually transfers to a different person.
 
 Allowed statuses:
 
@@ -63,8 +76,9 @@ Allowed types match the classification folder under `docs/agents/`:
 - `feature`: feature plan or implementation note.
 - `prompt`: prompt change, experiment, or review.
 - `bugfix`: bug investigation, fix, or verification note.
+- `review`: documentation review, code review, or review report.
 
-If a file does not clearly say its status and type, fix that before using it as context.
+If a file does not clearly say its status, type, and author, fix that before using it as context.
 
 ## Plan Requirements
 
@@ -158,3 +172,5 @@ When completing work, update documentation before ending the session:
 - When the work touched project documentation, verify each affected doc against the **Doc Review Criteria** before marking the artifact `executed`.
 
 When a later change makes an executed artifact inaccurate, either update its `Current Accuracy` section or mark it `obsolete`. Do not leave stale plans looking authoritative.
+
+Delete `obsolete` artifacts once the work they describe is no longer being reread for context. Git history preserves the record. Stale plans living next to active ones confuse new contributors more than they help.

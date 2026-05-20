@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-05-19
+Template version: 2026-05-20
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -195,7 +195,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Project root: TODO
 - Source: TODO
 - Tests: TODO
-- Docs: `docs/agents.md` defines agent work artifact rules; `postmortem/` contains the postmortem workflow.
+- Docs: `docs/agents.md` defines agent work artifact rules and doc-review criteria; agent artifacts live under `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, and `docs/agents/reviews/`; `postmortem/` contains the postmortem workflow.
 
 ### Conventions
 - Reusable rules and design guidance belong at the highest applicable `AGENTS.md`; subfolder `AGENTS.md` files are for local constraints only.
