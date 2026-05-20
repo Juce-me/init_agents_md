@@ -7,6 +7,8 @@ Use this structure only for agent-created work artifacts. Product documentation,
 
 The `docs/agents/` namespace exists so temporary or historical agent notes do not look like canonical project documentation.
 
+When agent work produces or modifies any project documentation, the **Doc Review Criteria** section below also applies before the work can be marked `executed`.
+
 ## Directory Rules
 
 Use one direct classification folder under `docs/agents/`:
@@ -40,9 +42,9 @@ Examples:
 
 When status changes, rename the file so the filename and top-level `Status:` line agree. Update links that pointed to the old name.
 
-## Required Status
+## Required Status and Type
 
-Every artifact must state whether it is planned, active, executed, or obsolete near the top:
+Every artifact must state status and type near the top:
 
 ```markdown
 Status: planned
@@ -56,7 +58,13 @@ Allowed statuses:
 - `executed`: the work was completed or attempted and has an outcome.
 - `obsolete`: the artifact no longer describes the current direction.
 
-If a file does not clearly say whether it was planned or executed, fix that before using it as context.
+Allowed types match the classification folder under `docs/agents/`:
+
+- `feature`: feature plan or implementation note.
+- `prompt`: prompt change, experiment, or review.
+- `bugfix`: bug investigation, fix, or verification note.
+
+If a file does not clearly say its status and type, fix that before using it as context.
 
 ## Plan Requirements
 
@@ -97,6 +105,46 @@ Use one of these outcome meanings:
 - `Superseded by implementation`: the code is correct and the old plan should not guide future work.
 - `Obsolete before execution`: the work was not done and should not be picked up without a fresh review.
 
+## Doc Review Criteria
+
+When agent work produces or modifies project documentation (product docs, API docs, architecture docs, user-facing copy), the affected docs must be reviewed against every applicable dimension below before the artifact is marked `executed`. If a dimension does not apply to a given doc, say so explicitly in `Current Accuracy` rather than skipping it silently.
+
+The criteria exist because docs that look plausible but encode the wrong UX flow, an outdated API contract, a leaked secret, or a stale architecture diagram cause more damage than missing docs — readers trust them.
+
+### UI/UX wording and flow
+
+- User-facing copy reads in plain language; no internal jargon, no leaked implementation terms.
+- Error messages name the actual problem and the user's next step. No bare error codes without context.
+- Terminology is consistent within and across docs. One canonical name per concept; cross-link rather than rename.
+- Primary flows are described end-to-end. A first-time reader can follow them without external context.
+- Accessibility wording is correct where relevant: alt text, ARIA labels, instructions that do not rely on color alone.
+
+### Backend and API correctness
+
+- Documented request and response shapes match the current code, including required vs optional fields and types.
+- Status codes, error codes, and error payloads are enumerated. No undocumented failure modes.
+- Versioning and deprecation are explicit. Deprecated endpoints have a removal target and a migration path.
+- Authentication, authorization, rate limits, and idempotency guarantees are stated, not implied.
+- Examples are runnable and reflect the current schema. Stale examples are worse than no examples.
+
+### Security and privacy
+
+- No secrets, tokens, internal hostnames, or production identifiers appear in examples, screenshots, or logs shown in docs.
+- Authn and authz behavior is documented: who can call what, how scopes work, what fails closed by default.
+- PII handling is explicit: what is stored, for how long, where, and how it is deleted or exported on request.
+- Threat model assumptions are stated where the doc affects security-sensitive surfaces (auth, payments, admin, file upload).
+- Vulnerability disclosure and incident contact paths are findable from the docs a reader is likely to land on first.
+
+### Architecture and contracts
+
+- Architecture docs match the current code: diagrams, component boundaries, and data flows are not stale.
+- Public contracts (APIs, events, schemas, CLI flags, config keys) are documented as contracts, with stability guarantees stated.
+- Migration paths are documented when contracts change. Old contracts say what replaces them and by when.
+- Architecture decisions live in ADRs or an equivalent record. The doc cites the decision rather than re-arguing it.
+- Cross-service dependencies and failure modes are stated, not left for readers to reverse-engineer.
+
+A doc-touching artifact's `Outcome` section must record which dimensions were checked and any findings deferred to a follow-up artifact.
+
 ## Maintenance Rules
 
 When starting work from an artifact, read its status and current accuracy first.
@@ -107,5 +155,6 @@ When completing work, update documentation before ending the session:
 - Update the artifact to `executed` or `obsolete`.
 - Add or refresh `Outcome` and `Current Accuracy`.
 - Update the implementation plan, `README.md`, and affected product or project docs so they match the shipped result.
+- When the work touched project documentation, verify each affected doc against the **Doc Review Criteria** before marking the artifact `executed`.
 
 When a later change makes an executed artifact inaccurate, either update its `Current Accuracy` section or mark it `obsolete`. Do not leave stale plans looking authoritative.
