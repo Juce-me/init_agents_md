@@ -1,4 +1,4 @@
-# Agent Work Artifacts
+# docs/AGENTS.md
 
 This file defines where agents store work records: plans, prompts, bugfix notes, and execution summaries.
 It does not replace root `AGENTS.md`; root `AGENTS.md` remains the source of truth for agent behavior.
