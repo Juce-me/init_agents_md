@@ -25,13 +25,6 @@ To install, copy-paste in your vibe-coding environment:
 > ln -s AGENTS.md GEMINI.md
 > ```
 >
-> On Windows, use:
->
-> ```powershell
-> New-Item -ItemType SymbolicLink -Path CLAUDE.md -Target AGENTS.md
-> New-Item -ItemType SymbolicLink -Path GEMINI.md -Target AGENTS.md
-> ```
->
 > If symlinks fail, fall back to copying the file. If `CLAUDE.md` or `GEMINI.md` already exist with content, do not overwrite them. Prepend `@AGENTS.md` as the first line and leave the rest intact.
 >
 > For every directory-specific `AGENTS.md` copied into a subfolder, create colocated `CLAUDE.md` and `GEMINI.md` symlinks to that local `AGENTS.md`.
