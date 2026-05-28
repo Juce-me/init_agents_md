@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-05-26
+Template version: 2026-05-28
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -107,7 +107,7 @@ For every task:
 - Never report "done" based on a plausible-looking diff alone. Plausibility is not correctness.
 - When debugging, address root causes, not symptoms. Suppressing the error is not fixing the error.
 - For UI changes, verify visually: screenshot before, screenshot after, describe the diff.
-- For Python work, always use a project-local virtual environment. Prefer an existing `.venv`; create `.venv` if missing before installing dependencies or running Python tools. Do not install packages into system Python.
+- Run project commands through the project-local environment or pinned runtime manager whenever the toolchain supports it. For Python, prefer an existing `.venv`; create `.venv` if missing before installing dependencies or running Python-based install, build, test, lint/typecheck, or local-run commands. Use `.venv/bin/python -m ...` or activate `.venv` before invoking Python tools, and never install packages into system Python. For Node/npm, use the repo-pinned runtime such as Volta (`node`, `npm`, `npx`) when configured instead of forcing commands through `.venv`.
 - Use CLI tools (gh, aws, gcloud, kubectl) when they exist. They are more context-efficient than reading docs or hitting APIs unauthenticated.
 - When reading logs, errors, or stack traces, read the whole thing. Half-read traces produce wrong fixes.
 
@@ -217,6 +217,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Add a new line only when the user corrects the agent and the correction is likely to recur.
 - Tighten an existing line instead of adding a near-duplicate.
 - Delete stale learnings when the underlying issue goes away.
+- Use each project's pinned local runtime manager for project commands: `.venv` for Python, Volta for Node/npm when configured.
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
