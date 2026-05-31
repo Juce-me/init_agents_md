@@ -28,6 +28,7 @@ These rules override everything else in this file when in conflict:
 3. **Never fabricate.** Not file paths, not commit hashes, not API names, not test results, not library functions. If you don't know, read the file, run the command, or say "I don't know, let me check."
 4. **Stop when confused.** If the task has two plausible interpretations, ask. Do not pick silently and proceed.
 5. **Touch only what you must.** Every changed line must trace directly to the user's request. No drive-by refactors, reformatting, or "while I was in there" cleanups.
+6. **Do not commit local or personal data.** Use repo-relative paths in committed files. Never commit absolute local paths, real emails, local machine usernames, hostnames, secrets, tokens, or other user-specific data; redact or replace them with placeholders.
 
 ---
 
