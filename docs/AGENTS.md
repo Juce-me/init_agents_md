@@ -159,7 +159,7 @@ The criteria exist because docs that look plausible but encode the wrong UX flow
 
 ### Security and privacy
 
-- No secrets, tokens, internal hostnames, or production identifiers appear in examples, screenshots, or logs shown in docs.
+- No secrets, tokens, internal hostnames, production identifiers, absolute local paths, real emails, local machine usernames, or other user-specific data appear in examples, screenshots, or logs shown in docs.
 - Authn and authz behavior is documented: who can call what, how scopes work, what fails closed by default.
 - PII handling is explicit: what is stored, for how long, where, and how it is deleted or exported on request.
 - Threat model assumptions are stated where the doc affects security-sensitive surfaces (auth, payments, admin, file upload).
