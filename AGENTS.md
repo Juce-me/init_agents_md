@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-05-28
+Template version: 2026-05-31
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -219,6 +219,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Tighten an existing line instead of adding a near-duplicate.
 - Delete stale learnings when the underlying issue goes away.
 - Use each project's pinned local runtime manager for project commands: `.venv` for Python, Volta for Node/npm when configured.
+- When changing this template, update `Template version` in `AGENTS.md` to the change date.
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
