@@ -37,6 +37,8 @@ To install, copy-paste in your vibe-coding environment:
 >
 > Leave anything that cannot be confirmed as `TODO`.
 >
+> Keep development and test artifacts inside the project: tests under `tests/`, disposable scratch work under `tmp/`, and command examples using repo-relative paths. Ensure `tmp/` is listed in `.gitignore` before using it.
+>
 > Do not touch section 11. It stays empty by design.
 >
 > For implementation plans and execution, use active Superpowers skills when available: `writing-plans` for plan creation, then `subagent-driven-development` when the platform supports subagents or `executing-plans` for inline execution.

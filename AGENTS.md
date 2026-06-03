@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-05-31
+Template version: 2026-06-03
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -109,6 +109,7 @@ For every task:
 - When debugging, address root causes, not symptoms. Suppressing the error is not fixing the error.
 - For UI changes, verify visually: screenshot before, screenshot after, describe the diff.
 - Run project commands through the project-local environment or pinned runtime manager whenever the toolchain supports it. For Python, prefer an existing `.venv`; create `.venv` if missing before installing dependencies or running Python-based install, build, test, lint/typecheck, or local-run commands. Use `.venv/bin/python -m ...` or activate `.venv` before invoking Python tools, and never install packages into system Python. For Node/npm, use the repo-pinned runtime such as Volta (`node`, `npm`, `npx`) when configured instead of forcing commands through `.venv`.
+- Keep development artifacts inside the repo. Put tests, fixtures, generated test data, scratch files, and command examples under repo-relative paths such as `tests/` or `tmp/`; do not create ad hoc `/tmp/...` or other absolute-path workspaces for project work unless an external tool requires it. Before using `tmp/`, ensure it is gitignored.
 - Use CLI tools (gh, aws, gcloud, kubectl) when they exist. They are more context-efficient than reading docs or hitting APIs unauthenticated.
 - When reading logs, errors, or stack traces, read the whole thing. Half-read traces produce wrong fixes.
 
