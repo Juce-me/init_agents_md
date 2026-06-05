@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-06-03
+Template version: 2026-06-05
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -29,6 +29,7 @@ These rules override everything else in this file when in conflict:
 4. **Stop when confused.** If the task has two plausible interpretations, ask. Do not pick silently and proceed.
 5. **Touch only what you must.** Every changed line must trace directly to the user's request. No drive-by refactors, reformatting, or "while I was in there" cleanups.
 6. **Do not commit local or personal data.** Use repo-relative paths in committed files. Never commit absolute local paths, real emails, local machine usernames, hostnames, secrets, tokens, or other user-specific data; redact or replace them with placeholders.
+7. **No agent/tool branding.** Never include agent/tool branding in branch names, PR titles/bodies, commit messages, or code/docs text unless explicitly requested.
 
 ---
 
