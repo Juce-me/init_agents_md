@@ -53,7 +53,7 @@ To install, copy-paste in your vibe-coding environment:
 > - Update `postmortem/README.md` whenever adding or renaming a postmortem.
 > - Keep `README.md`, `AGENTS.md`, and `postmortem/README.md` aligned when workflow or structure changes.
 >
-> Copy `docs/AGENTS.md` into the project if the team wants agents to keep work artifacts. Store real files under direct classification folders such as `docs/agents/features/`, `docs/agents/prompts/`, or `docs/agents/bugfixes/`. Name artifacts as `YYYY-MM-DD-status-summary.md`. On completion, update the artifact status/outcome plus the implementation plan, `README.md`, and affected docs. Do not create empty placeholder directories.
+> Copy `docs/AGENTS.md` into the project if the team wants agents to keep work artifacts. Store real files under direct classification folders: `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, or `docs/agents/reviews/`. Name artifacts as `STATUS-summary.md` (or `STATUS-YYYY-MM-DD-summary.md` when the creation date carries meaning), where `STATUS` is one of `PLANNED`, `IN-PROGRESS`, `EXECUTED`, `OBSOLETE`. On completion, update the artifact status/outcome plus the implementation plan, `README.md`, and affected docs. Do not create empty placeholder directories.
 >
 > Symlink `docs/CLAUDE.md` and `docs/GEMINI.md` to `docs/AGENTS.md`.
 >
