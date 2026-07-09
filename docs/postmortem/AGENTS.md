@@ -1,4 +1,4 @@
-# postmortem/AGENTS.md
+# docs/postmortem/AGENTS.md
 
 Directory-specific instructions for creating and updating postmortems.
 
@@ -32,7 +32,7 @@ Each postmortem must be blameless, specific, verified, and actionable. Include:
 
 When adding, renaming, or deleting a postmortem:
 
-- Update `postmortem/README.md`.
+- Update `docs/postmortem/README.md`.
 - Keep entries in creation order.
 - Update summary counts or status tables if the index includes them.
 

@@ -64,7 +64,7 @@ Do not leave two eras of naming side by side. A folder with both `2026-03-03-foo
 Link related context with stable references rather than free-form prose.
 
 - Cite sibling artifacts by relative path, e.g. `../bugfixes/EXECUTED-cache-stale.md`.
-- Cite postmortems by relative path to the `postmortem/` directory.
+- Cite postmortems by relative path to the `docs/postmortem/` directory.
 - Cite pull requests, commits, and issues with full URLs. If the same link appears repeatedly, define it once near the top of the artifact and reuse the reference.
 - Do not invent links. If a referenced artifact does not exist yet, say so explicitly instead of fabricating a path.
 

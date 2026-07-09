@@ -43,19 +43,21 @@ To install, copy-paste in your vibe-coding environment:
 >
 > For implementation plans and execution, use active Superpowers skills when available: `writing-plans` for plan creation, then `subagent-driven-development` when the platform supports subagents or `executing-plans` for inline execution.
 >
-> Copy `postmortem/README.md` into the project if it does not already exist. If the project already has a postmortem index, preserve it and merge in any missing conventions:
+> Copy `docs/postmortem/README.md` into the project if it does not already exist. If the project already has a postmortem index, preserve it and merge in any missing conventions:
 >
 > - Review relevant postmortems before touching related code.
-> - Copy `postmortem/AGENTS.md` so agents have local postmortem-specific instructions.
-> - Symlink `postmortem/CLAUDE.md` and `postmortem/GEMINI.md` to `postmortem/AGENTS.md`.
+> - Copy `docs/postmortem/AGENTS.md` so agents have local postmortem-specific instructions.
+> - Symlink `docs/postmortem/CLAUDE.md` and `docs/postmortem/GEMINI.md` to `docs/postmortem/AGENTS.md`.
 > - Name new postmortems sequentially as `MRTXXX-short-title.md`.
 > - Keep postmortems blameless, specific, verified, and action-oriented.
-> - Update `postmortem/README.md` whenever adding or renaming a postmortem.
-> - Keep `README.md`, `AGENTS.md`, and `postmortem/README.md` aligned when workflow or structure changes.
+> - Update `docs/postmortem/README.md` whenever adding or renaming a postmortem.
+> - Keep `README.md`, `AGENTS.md`, and `docs/postmortem/README.md` aligned when workflow or structure changes.
 >
 > Copy `docs/AGENTS.md` into the project if the team wants agents to keep work artifacts. Store real files under direct classification folders: `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, or `docs/agents/reviews/`. Name artifacts as `STATUS-summary.md` (or `STATUS-YYYY-MM-DD-summary.md` when the creation date carries meaning), where `STATUS` is one of `PLANNED`, `IN-PROGRESS`, `EXECUTED`, `OBSOLETE`. On completion, update the artifact status/outcome plus the implementation plan, `README.md`, and affected docs. Do not create empty placeholder directories.
 >
 > Symlink `docs/CLAUDE.md` and `docs/GEMINI.md` to `docs/AGENTS.md`.
+>
+> Check whether the project matches an optional preset under `presets/`. Currently available: `python-web-app` (a Python back-end serving templates, static assets, or a JavaScript front-end). If the project matches, ask the user whether installing the preset makes sense for them — never apply a preset without asking. On yes, fetch `presets/python-web-app.md` and copy its rules into section 10 `Conventions` of the project's `AGENTS.md`.
 >
 > When done, tell the user to restart the session so the file loads.
 
@@ -67,8 +69,9 @@ To install, copy-paste in your vibe-coding environment:
 - `docs/AGENTS.md`: Rules for agent work artifacts, naming, status, and source of truth.
 - `docs/CLAUDE.md`: Symlink to `docs/AGENTS.md`.
 - `docs/GEMINI.md`: Symlink to `docs/AGENTS.md`.
-- `postmortem/AGENTS.md`: Directory-specific instructions for postmortem creation and updates.
-- `postmortem/CLAUDE.md`: Symlink to `postmortem/AGENTS.md`.
-- `postmortem/GEMINI.md`: Symlink to `postmortem/AGENTS.md`.
-- `postmortem/README.md`: Reusable postmortem index and template.
+- `docs/postmortem/AGENTS.md`: Directory-specific instructions for postmortem creation and updates.
+- `docs/postmortem/CLAUDE.md`: Symlink to `docs/postmortem/AGENTS.md`.
+- `docs/postmortem/GEMINI.md`: Symlink to `docs/postmortem/AGENTS.md`.
+- `docs/postmortem/README.md`: Reusable postmortem index and template.
+- `presets/python-web-app.md`: Optional hygiene preset for Python web apps, offered (never auto-applied) at install time.
 - `README.md`: This project guide and install checklist.

@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-06-28
+Template version: 2026-07-09
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -55,10 +55,9 @@ The git and repo rules marked non-negotiable in section 6 rank with this list.
 
 - No features beyond what was asked.
 - No abstractions for single-use code. No configurability, flexibility, or hooks that were not requested.
-- Reuse existing design elements. If a style, component, token, or pattern for what you need already exists in the project, use it. When changing reusable UI, docs, prompts, or workflow behavior, update the shared component, token, template, or instruction instead of creating a one-off local variant.
+- Reuse existing design elements. If a style, component, token, or pattern already exists in the project, use it. When changing reusable UI, docs, prompts, or workflow behavior, update the shared element instead of creating a one-off local variant.
 - No error handling for impossible scenarios. Handle the failures that can actually happen.
-- If the solution runs 200 lines and could be 50, rewrite it before showing it.
-- Do not simplify implementation for brevity. Prefer the shortest correct implementation, but never remove required behavior, architectural constraints, or edge-case handling just to shorten code or explanation.
+- If the solution runs 200 lines and could be 50, rewrite it before showing it. But never remove required behavior, architectural constraints, or edge-case handling just to shorten code or explanation.
 - If you find yourself adding "for future extensibility", stop. Future extensibility is a future decision.
 - Bias toward deleting code over adding code. Shipping less is almost always better.
 
@@ -75,7 +74,7 @@ The test: would a senior engineer reading the diff call this overcomplicated? If
 - Do not delete pre-existing dead code unless asked. If you notice it, mention it in the summary.
 - Do clean up orphans created by your own changes (unused imports, variables, functions your edit made obsolete).
 - Match the project's existing style exactly: indentation, quotes, naming, file layout.
-- Put reusable project rules at the highest applicable level. Subfolder `AGENTS.md` files may add stricter constraints but must not redefine artifact naming, location, or other rules set by the root template or `docs/AGENTS.md` — if a different scheme is genuinely needed, change it at the template level so every project stays consistent. Keep `CLAUDE.md` and `GEMINI.md` symlinked to the local `AGENTS.md`.
+- Put reusable project rules at the highest applicable level. Subfolder `AGENTS.md` files may add stricter constraints but must not redefine artifact naming, location, or other rules set by the root template or `docs/AGENTS.md`; if a different scheme is genuinely needed, change it at the template level. Keep `CLAUDE.md` and `GEMINI.md` symlinked to the local `AGENTS.md`.
 - Place new files in the appropriate top-level subfolder (e.g., `assets/` for static assets, `scripts/` for tooling and automation, `src/` for sources, `tests/` for tests, `docs/` for documentation) instead of the project root. If the project has an established layout, follow it; otherwise use these defaults. Create a folder only when adding its first real file. Do not commit empty placeholders, `.keep` files, or scaffold directories.
 
 The test: every changed line traces directly to the user's request. If a line fails that test, revert it.
@@ -109,7 +108,7 @@ For every task:
 - Never report "done" based on a plausible-looking diff alone. Plausibility is not correctness.
 - When debugging, address root causes, not symptoms. Suppressing the error is not fixing the error.
 - For UI changes, verify visually: screenshot before, screenshot after, describe the diff.
-- Run project commands through the project-local environment or pinned runtime manager whenever the toolchain supports it. For Python, prefer an existing `.venv`; create `.venv` if missing before installing dependencies or running Python-based install, build, test, lint/typecheck, or local-run commands. Use `.venv/bin/python -m ...` or activate `.venv` before invoking Python tools, and never install packages into system Python. For Node/npm, use the repo-pinned runtime such as Volta (`node`, `npm`, `npx`) when configured instead of forcing commands through `.venv`.
+- Run project commands through the project-local environment or pinned runtime manager. Python: use the project `.venv` (create it if missing) via `.venv/bin/python -m ...` or activation for every install, build, test, lint/typecheck, or run command; never install packages into system Python. Node/npm: use the repo-pinned runtime such as Volta when configured, not `.venv`.
 - Use CLI tools (gh, aws, gcloud, kubectl) when they exist. They are more context-efficient than reading docs or hitting APIs unauthenticated.
 - When reading logs, errors, or stack traces, read the whole thing. Half-read traces produce wrong fixes.
 
@@ -179,9 +178,9 @@ After every session where the agent did something wrong:
 For significant misses, regressions, or repeated mistakes:
 
 - Review existing postmortems before touching related code.
-- Follow `postmortem/AGENTS.md` when creating or updating postmortems.
+- Follow `docs/postmortem/AGENTS.md` when creating or updating postmortems.
 - Follow `docs/AGENTS.md` when creating or updating agent work artifacts such as feature plans, prompt notes, bugfix investigations, or execution summaries.
-- Keep `README.md`, `AGENTS.md`, and `postmortem/README.md` aligned when workflow or structure changes.
+- Keep `README.md`, `AGENTS.md`, and `docs/postmortem/README.md` aligned when workflow or structure changes.
 
 Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Under 300 is a good ceiling. Over 500 and you are fighting your own config.
 
@@ -207,7 +206,8 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Project root: TODO
 - Source: TODO
 - Tests: TODO
-- Docs: `docs/AGENTS.md` defines agent work artifact rules and doc-review criteria; agent artifacts live under `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, and `docs/agents/reviews/`; `postmortem/` contains the postmortem workflow.
+- Docs: `docs/AGENTS.md` defines agent work artifact rules and doc-review criteria; agent artifacts live under `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, and `docs/agents/reviews/`; `docs/postmortem/` contains the postmortem workflow.
+- Presets: `presets/` holds optional rule presets offered at install time (currently `python-web-app`); see `README.md` for the install flow.
 
 ### Conventions
 - Reusable rules and design guidance belong at the highest applicable `AGENTS.md`; subfolder `AGENTS.md` files are for local constraints only.
