@@ -5,22 +5,22 @@ It does not replace root `AGENTS.md`; root `AGENTS.md` remains the source of tru
 
 Use this structure only for agent-created work artifacts. Product documentation, API docs, architecture docs, and user-facing docs should live in their own appropriate locations under `docs/`.
 
-The `docs/agents/` namespace exists so temporary or historical agent notes do not look like canonical project documentation.
+The classification folders below are reserved for agent artifacts, and every artifact carries a `STATUS-` filename prefix, so temporary or historical agent notes do not look like canonical project documentation. Do not mix product documentation into them.
 
 When agent work produces or modifies any project documentation, the **Doc Review Criteria** section below also applies before the work can be marked `executed`.
 
 ## Directory Rules
 
-Use one direct classification folder under `docs/agents/`:
+Use one direct classification folder under `docs/`:
 
-- `docs/agents/features/` for feature plans and implementation notes.
-- `docs/agents/prompts/` for prompt changes, prompt experiments, and prompt reviews.
-- `docs/agents/bugfixes/` for bug investigations, fixes, and verification notes.
-- `docs/agents/reviews/` for documentation reviews, code reviews, and review reports.
+- `docs/features/` for feature plans and implementation notes.
+- `docs/prompts/` for prompt changes, prompt experiments, and prompt reviews.
+- `docs/bugfixes/` for bug investigations, fixes, and verification notes.
+- `docs/reviews/` for documentation reviews, code reviews, and review reports.
 
 Do not put agent work artifacts directly under `docs/` when they fit one of these classifications.
 
-Do not add empty or placeholder folder layers. Use `docs/agents/features/example.md`, not `docs/_empty_folder_/features/example.md`.
+Do not add empty or placeholder folder layers. Use `docs/features/example.md`, not `docs/_empty_folder_/features/example.md`.
 
 Create a classification folder only when adding a real file inside it. Do not commit empty directories, `.keep` files, or placeholder READMEs just to preserve the taxonomy.
 
@@ -48,7 +48,7 @@ When status changes, rename the file so the filename and top-level `Status:` lin
 
 ### No subfolder overrides
 
-A subfolder `AGENTS.md` may add stricter constraints (extra required fields, additional review steps, narrower allowed scopes) but **must not** redefine the naming scheme above or move artifacts out of `docs/agents/<class>/`. Naming and location are set here so that every project using this template stays consistent. If a project needs a genuinely different scheme, change this file at the template level — not in a local override.
+A subfolder `AGENTS.md` may add stricter constraints (extra required fields, additional review steps, narrower allowed scopes) but **must not** redefine the naming scheme above or move artifacts out of `docs/<class>/`. Naming and location are set here so that every project using this template stays consistent. If a project needs a genuinely different scheme, change this file at the template level — not in a local override.
 
 ### Migration when conventions change
 
@@ -87,7 +87,7 @@ Allowed statuses:
 - `executed`: the work was completed or attempted and has an outcome.
 - `obsolete`: the artifact no longer describes the current direction.
 
-Allowed types match the classification folder under `docs/agents/`:
+Allowed types match the classification folder under `docs/`:
 
 - `feature`: feature plan or implementation note.
 - `prompt`: prompt change, experiment, or review.

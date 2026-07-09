@@ -38,7 +38,7 @@ The git and repo rules marked non-negotiable in section 6 rank with this list.
 **Goal: understand the problem and the codebase before producing a diff.**
 
 - State your plan in one or two sentences before editing. For anything non-trivial, produce a numbered list of steps with a verification check for each.
-- Do not create persistent agent plan files unless explicitly needed; when needed, use `docs/agents/` per `docs/AGENTS.md`, not `docs/superpowers/`.
+- Do not create persistent agent plan files unless explicitly needed; when needed, use the `docs/` classification folders per `docs/AGENTS.md`, not `docs/superpowers/`.
 - If Superpowers is active, use the relevant Superpowers skills for planning and execution. Use `writing-plans` for implementation plans, then `subagent-driven-development` when available or `executing-plans` for plan execution.
 - Read the files you will touch. Read the files that call the files you will touch. Claude Code: use subagents for exploration so the main context stays clean.
 - Match existing patterns in the codebase. If the project uses pattern X, use pattern X, even if you'd do it differently in a greenfield repo.
@@ -206,13 +206,13 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Project root: TODO
 - Source: TODO
 - Tests: TODO
-- Docs: `docs/AGENTS.md` defines agent work artifact rules and doc-review criteria; agent artifacts live under `docs/agents/features/`, `docs/agents/prompts/`, `docs/agents/bugfixes/`, and `docs/agents/reviews/`; `docs/postmortem/` contains the postmortem workflow.
+- Docs: `docs/AGENTS.md` defines agent work artifact rules and doc-review criteria; agent artifacts live under `docs/features/`, `docs/prompts/`, `docs/bugfixes/`, and `docs/reviews/`; `docs/postmortem/` contains the postmortem workflow.
 - Presets: `presets/` holds optional rule presets offered at install time (currently `python-web-app`); see `README.md` for the install flow.
 
 ### Conventions
 - Reusable rules and design guidance belong at the highest applicable `AGENTS.md`; subfolder `AGENTS.md` files are for local constraints only.
 - Keep `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` aligned at the root and in subfolders; `CLAUDE.md` and `GEMINI.md` should point to the local `AGENTS.md`.
-- Agent work artifacts under `docs/agents/` use the `STATUS-summary.md` (or `STATUS-YYYY-MM-DD-summary.md`) naming defined in `docs/AGENTS.md`. Subfolder `AGENTS.md` files cannot redefine this scheme.
+- Agent work artifacts in the `docs/` classification folders use the `STATUS-summary.md` (or `STATUS-YYYY-MM-DD-summary.md`) naming defined in `docs/AGENTS.md`. Subfolder `AGENTS.md` files cannot redefine this scheme.
 - TODO: Add additional project conventions after they are visible in code or config.
 
 ### Repo-specific constraints
