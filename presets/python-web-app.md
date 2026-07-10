@@ -1,15 +1,25 @@
 # Preset: python-web-app
 
-Optional hygiene rules for Python web applications: a Python back-end (Django, Flask, FastAPI, or similar) serving templates, static assets, or a JavaScript front-end.
+Preset version: 2026-07-10
+
+Optional hygiene rules for Python web applications: a Python back-end (Django, Flask, FastAPI, or similar) serving templates or front-end assets.
 
 ## How to install
 
-Offer this preset during first install when the project matches the description above. Ask the user whether it makes sense for their project; never apply it without asking. On yes, copy the rules below into section 10 `Conventions` of the project's `AGENTS.md`. Rules placed there survive template auto-updates, which preserve sections 10 and 11.
+Offer this preset when the project matches the description above. Ask whether it fits the project's established framework and workflow; never apply it without approval. Copy the complete marked block below into section 10 `Conventions` of the project's `AGENTS.md`.
 
-## Rules
+Installation must be idempotent:
 
-- Split work by feature. One feature per branch and PR; do not bundle unrelated features in one diff.
-- Keep front-end and back-end changes separable. When a feature spans both, structure commits so each layer's change can be reviewed on its own.
-- Separate languages and layers: Python logic in modules, JavaScript in `.js` files, styles in stylesheets, markup in templates. No inline `<script>` or `<style>` blocks and no `style=` attributes in templates unless the project already does this deliberately.
-- Keep business logic out of templates. Templates render context; views and handlers prepare it.
-- Follow the project's design system: existing tokens, components, spacing, and typography. Never introduce one-off colors, fonts, or components when a system equivalent exists. Do not redesign the design system unless explicitly asked to.
+- If no `python-web-app` block exists, add it once after approval.
+- If exactly one block with the same version exists, compare the complete block. Make no change only when it is identical; if it diverged, treat it as a local customization and show the diff before asking whether to replace it.
+- If an older version exists, show the block diff and replace that block only after approval.
+- If a newer version exists, do not downgrade it.
+- If markers are missing, malformed, or duplicated, stop and show the existing content; never append or repair a block automatically.
+
+## Installable block
+
+<!-- BEGIN PRESET python-web-app v2026-07-10 -->
+- Follow the project's established framework boundaries. Keep Python behavior in Python modules and front-end behavior in the framework's native modules, components, or assets; do not force `.js` files or standalone stylesheets when the verified toolchain uses TypeScript, JSX/TSX, single-file components, CSS modules, or CSS-in-JS.
+- Keep business logic out of server-rendered templates. Views, handlers, or services prepare context; templates may use presentation-only conditions, loops, and formatting.
+- When the project uses external asset files, avoid adding inline `<script>`, `<style>`, or `style=` content to server-rendered templates. Follow an established framework convention when inline or component-scoped code is intentional or required.
+<!-- END PRESET python-web-app -->

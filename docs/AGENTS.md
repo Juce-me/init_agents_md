@@ -3,24 +3,26 @@
 This file defines where agents store work records: plans, prompts, bugfix notes, and execution summaries.
 It does not replace root `AGENTS.md`; root `AGENTS.md` remains the source of truth for agent behavior.
 
+The artifact location, naming, header, plan, source-of-truth, and maintenance rules in this file apply only under `docs/agents/`. The `docs/postmortem/` subtree is explicitly delegated to `docs/postmortem/AGENTS.md`, which owns its separate naming and content schema. The **Doc Review Criteria** apply outside `docs/agents/` only when work changes product, API, architecture, or user-facing documentation; they do not replace a delegated subtree's schema.
+
 Use this structure only for agent-created work artifacts. Product documentation, API docs, architecture docs, and user-facing docs should live in their own appropriate locations under `docs/`.
 
-The classification folders below are reserved for agent artifacts, and every artifact carries a `STATUS-` filename prefix, so temporary or historical agent notes do not look like canonical project documentation. Do not mix product documentation into them.
+The `docs/agents/` namespace is reserved for agent artifacts, and every artifact carries a `STATUS-` filename prefix, so temporary or historical agent notes do not look like canonical project documentation. Do not mix product documentation into it.
 
 When agent work produces or modifies any project documentation, the **Doc Review Criteria** section below also applies before the work can be marked `executed`.
 
 ## Directory Rules
 
-Use one direct classification folder under `docs/`:
+Use one direct classification folder under `docs/agents/`:
 
-- `docs/features/` for feature plans and implementation notes.
-- `docs/prompts/` for prompt changes, prompt experiments, and prompt reviews.
-- `docs/bugfixes/` for bug investigations, fixes, and verification notes.
-- `docs/reviews/` for documentation reviews, code reviews, and review reports.
+- `docs/agents/features/` for feature plans and implementation notes.
+- `docs/agents/prompts/` for prompt changes, prompt experiments, and prompt reviews.
+- `docs/agents/bugfixes/` for bug investigations, fixes, and verification notes.
+- `docs/agents/reviews/` for documentation reviews, code reviews, and review reports.
 
 Do not put agent work artifacts directly under `docs/` when they fit one of these classifications.
 
-Do not add empty or placeholder folder layers. Use `docs/features/example.md`, not `docs/_empty_folder_/features/example.md`.
+Do not add empty or placeholder folder layers. Use `docs/agents/features/example.md`, not `docs/_empty_folder_/features/example.md`.
 
 Create a classification folder only when adding a real file inside it. Do not commit empty directories, `.keep` files, or placeholder READMEs just to preserve the taxonomy.
 
@@ -48,23 +50,23 @@ When status changes, rename the file so the filename and top-level `Status:` lin
 
 ### No subfolder overrides
 
-A subfolder `AGENTS.md` may add stricter constraints (extra required fields, additional review steps, narrower allowed scopes) but **must not** redefine the naming scheme above or move artifacts out of `docs/<class>/`. Naming and location are set here so that every project using this template stays consistent. If a project needs a genuinely different scheme, change this file at the template level — not in a local override.
+A subfolder `AGENTS.md` under `docs/agents/` may add stricter constraints (extra required fields, additional review steps, narrower allowed scopes) but **must not** redefine the naming scheme above or move artifacts out of `docs/agents/<class>/`. Naming and location are set here so that every project using this template stays consistent. Separately delegated sibling trees such as `docs/postmortem/` are outside this artifact schema.
 
 ### Migration when conventions change
 
-If this naming scheme changes, every existing artifact must be either:
+If this naming or location scheme changes, preflight the destination for collisions and document the upgrade in the template migration guide. Every existing artifact must then be either:
 
 - **Renamed** to the new scheme (preferred), or
 - **Marked `obsolete`** under its current name if it no longer reflects current direction.
 
-Do not leave two eras of naming side by side. A folder with both `2026-03-03-foo-design.md` and `EXECUTED-foo.md` is the failure mode this rule prevents: readers cannot tell which convention is current, and neither agents nor humans navigate it reliably. The migration is part of the convention change, not a follow-up task.
+Never merge colliding directories or overwrite an existing destination automatically. Stop, show the conflict, and ask which content is authoritative. Do not leave two eras of naming side by side. A folder with both `2026-03-03-foo-design.md` and `EXECUTED-foo.md` is the failure mode this rule prevents: readers cannot tell which convention is current, and neither agents nor humans navigate it reliably. The migration is part of the convention change, not a follow-up task.
 
 ## Cross-References
 
 Link related context with stable references rather than free-form prose.
 
 - Cite sibling artifacts by relative path, e.g. `../bugfixes/EXECUTED-cache-stale.md`.
-- Cite postmortems by relative path to the `docs/postmortem/` directory.
+- Cite postmortems with a relative path, e.g. `../../postmortem/MRT001-short-title.md` from an artifact in `docs/agents/features/`.
 - Cite pull requests, commits, and issues with full URLs. If the same link appears repeatedly, define it once near the top of the artifact and reuse the reference.
 - Do not invent links. If a referenced artifact does not exist yet, say so explicitly instead of fabricating a path.
 
@@ -87,7 +89,7 @@ Allowed statuses:
 - `executed`: the work was completed or attempted and has an outcome.
 - `obsolete`: the artifact no longer describes the current direction.
 
-Allowed types match the classification folder under `docs/`:
+Allowed types match the classification folder under `docs/agents/`:
 
 - `feature`: feature plan or implementation note.
 - `prompt`: prompt change, experiment, or review.
