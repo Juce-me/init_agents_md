@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-07-10
+Template version: 2026-07-12
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -230,6 +230,7 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - Add a new line only when the user corrects the agent and the correction is likely to recur.
 - Tighten an existing line instead of adding a near-duplicate.
 - Delete stale learnings when the underlying issue goes away.
+- Before declaring a branch ready, verify it is based on the intended PR target, confirm remote mergeability, and inspect actual CI checks; local tests alone are insufficient.
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
