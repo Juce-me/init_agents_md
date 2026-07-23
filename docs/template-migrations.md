@@ -36,3 +36,15 @@ Earlier templates placed two reusable-template rules in section 11 even though t
 ```
 
 The runtime rule now lives in section 5, where verified project tooling takes precedence. Template-maintenance rules belong in section 10 of the template source and should not be copied into a target project's learnings.
+
+## 2026-07-23: Optional Tracker and Status Flow Context
+
+The root template now ends section 10 with a `Tracker and status flow` subsection, and section 6 references it when one is defined. Automatic root-only updates preserve section 10, so existing installations do not gain the subsection automatically; the conditional section 6 rule stays inert until the subsection exists.
+
+If the project uses an issue tracker and the user wants its workflow captured:
+
+1. Append a `### Tracker and status flow` subsection at the end of section 10 containing only verified values: the tracker, what a work item and a change request are called, the status field and its columns mapped to lifecycle moments (claimed, in progress, in review, merged), who moves status and when, and tracker-specific traps worth recording.
+2. Use the project's real tracker vocabulary; do not copy the template repository's stub values.
+3. Preserved sections are never edited automatically: show the section 10 addition and apply it only after approval.
+
+If the project has no tracker, no action is needed beyond the root-only text update.

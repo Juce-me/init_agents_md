@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-07-18
+Template version: 2026-07-23
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -83,6 +83,7 @@ These rules override later guidance in this file:
 ## 6. Git and session hygiene
 
 - Follow the user request and the repository-specific Git workflow in section 10. Do not commit, push, merge, delete, or rewrite history unless that action is in scope.
+- When section 10 defines a tracker and status flow, reference the work item in branches, commits, and change requests, and update its status at the mapped moments.
 - Before a commit, confirm the diff contains no local data or unrelated changes. Use a descriptive subject under 72 characters; add a body when the reason is not clear from the subject. Do not add agent attribution.
 - At the start of a new session, check the upstream [`AGENTS.md`](https://raw.githubusercontent.com/Juce-me/init_agents_md/main/AGENTS.md) template version. If it is newer, inspect the corresponding [`template-migrations.md`](https://raw.githubusercontent.com/Juce-me/init_agents_md/main/docs/template-migrations.md) entries first.
 - Apply only a root-file text update automatically, preserving sections 10 and 11. Get approval before moving files, replacing auxiliary instructions, changing symlinks, editing preserved sections, or resolving collisions. If either version is missing or comparison is uncertain, show the proposed change instead of applying it.
@@ -102,14 +103,15 @@ These rules override later guidance in this file:
 
 ## 8. When to ask
 
-Ask before proceeding in any of these cases:
+Separate mechanical moves from strategic ones. Ask before proceeding in any of these cases:
 
+- The move changes the agreed design, plan, or strategy: a new dependency, a scope split, or a deviation from a documented decision.
 - Different interpretations materially change the output.
 - The change affects a load-bearing, versioned, or migration-sensitive contract.
 - The task requires credentials, production access, destructive action, or authority not already granted.
 - The literal request conflicts with the user's stated goal.
 
-When none apply, verify what you can locally, make the smallest safe, reversible assumption, state it when material, and continue.
+When none apply, the move is mechanical: verify what you can locally, make the smallest safe, reversible assumption, state it when material, and continue without waiting for approval. If unsure which kind a move is, treat it as strategic and ask.
 
 ---
 
@@ -162,6 +164,10 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 ### Git workflow
 
 - No repository-specific branch or pull-request workflow is defined.
+
+### Tracker and status flow
+
+- No issue tracker integration is defined for this repository; GitHub pull requests are the only tracked change unit.
 
 ---
 
