@@ -127,20 +127,23 @@ When none apply, the move is mechanical: verify what you can locally, make the s
 ## 10. Project context
 
 ### Stack
+
 - Documentation-only instruction template repository.
 - No package manager.
 - POSIX shell is used only for repository validation.
 
 ### Commands
+
 - Install: Not applicable.
 - Build: Not applicable.
 - Test: `scripts/validate-template.sh`
 - Lint/typecheck: `git diff --check`
 - Run locally: Not applicable.
 
-No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this project yet. Add verified commands here when the project adds them.
+No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this project.
 
 ### Layout
+
 - Project root: `AGENTS.md`, compatibility symlinks, and the install guide.
 - Source: reusable instructions under `docs/` and optional rules under `presets/`.
 - Tests: `scripts/validate-template.sh`.
@@ -151,20 +154,20 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 - No additional repository-specific conventions are defined.
 
 ### Repo-specific constraints
+
 - Update `Template version` to the change date whenever the reusable template changes.
 - Document structural layout changes and collision-safe upgrade steps in `docs/template-migrations.md`.
 
 ### Git workflow
-- TODO: Document branch and PR workflow when one is established.
+
+- No repository-specific branch or pull-request workflow is defined.
+
+### Tracker and status flow
+
+- No issue tracker integration is defined for this repository; GitHub pull requests are the only tracked change unit.
 
 ---
 
 ## 11. Project Learnings
 
-- Keep this section short and concrete.
-- Add a new line only when the user corrects the agent and the correction is likely to recur.
-- Tighten an existing line instead of adding a near-duplicate.
-- Delete stale learnings when the underlying issue goes away.
 - In every installed project, before declaring a branch ready, verify it is based on the intended PR target, confirm remote mergeability, and inspect actual CI checks; local tests alone are insufficient.
-
-When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).

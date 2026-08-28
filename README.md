@@ -35,6 +35,7 @@ To install, copy-paste in your vibe-coding environment:
 > - Stack
 > - Build, test, lint, and run commands from `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile`
 > - Source and test directory layout
+> - Tracker and status flow, when the project uses an issue tracker: the tracker, what a work item and a change request are called, the status field and its columns mapped to lifecycle moments (claimed, in progress, in review, merged), who moves status and when, and tracker-specific traps worth recording. When there is no tracker, record that in one line.
 >
 > Leave anything that cannot be confirmed as `TODO`.
 > Remove source-repository entries for files that were not installed, including `presets/`, `scripts/`, and optional documentation workflows.
