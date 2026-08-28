@@ -137,6 +137,31 @@ done
 grep -Fq 'The `docs/postmortem/` subtree is explicitly delegated to `docs/postmortem/AGENTS.md`' docs/AGENTS.md || fail "docs/AGENTS.md must explicitly delegate the postmortem subtree"
 grep -Fq '## 2026-07-10: Optional Postmortem Relocation' docs/template-migrations.md || fail "postmortem migration entry is missing"
 grep -Fq '## 2026-07-10: Section 11 Cleanup' docs/template-migrations.md || fail "section 11 migration entry is missing"
+grep -Fq '## 2026-08-28: Git Author Identity and Instruction Cleanup' docs/template-migrations.md || fail "git author identity migration entry is missing"
+
+grep -Fq 'A configured Git author name may be used where project documentation requires attribution.' AGENTS.md || fail "AGENTS.md must allow configured Git author names for documentation attribution"
+grep -Fq 'Before editing a target file, read the instruction chain from the project root through its directory' AGENTS.md || fail "AGENTS.md must require target-path instruction discovery"
+grep -Fq 'In every installed project, before declaring a branch ready' AGENTS.md || fail "branch readiness guidance must explicitly apply to every installed project"
+
+for duplicate_rule in \
+    'Reusable rules and design guidance belong at the highest applicable `AGENTS.md`' \
+    'Keep `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` aligned at the root and in subfolders' \
+    'Agent work artifacts under `docs/agents/` use the `STATUS-summary.md`'
+do
+    if grep -Fq "$duplicate_rule" AGENTS.md; then
+        fail "section 10 repeats reusable guidance: $duplicate_rule"
+    fi
+done
+
+grep -Fq 'Author: <git-user-name>' docs/AGENTS.md || fail "artifact header must use the configured Git author name"
+grep -Fq 'Set it to the non-empty output of `git config user.name` in the repository.' docs/AGENTS.md || fail "artifact author instructions must name git config user.name as the source"
+grep -Fq 'If that value is unset, ask the user; do not infer a name or hosting-account handle.' docs/AGENTS.md || fail "artifact author instructions must not invent a missing identity"
+grep -Fq 'Propose deletion of `obsolete` artifacts' docs/AGENTS.md || fail "obsolete artifact deletion must be proposal-only"
+if grep -Fq 'Delete `obsolete` artifacts' docs/AGENTS.md; then
+    fail "obsolete artifact deletion must not be automatic"
+fi
+
+grep -Fq 'Set `Author` to the non-empty output of `git config user.name`' README.md || fail "README.md must document the artifact author source"
 
 if grep -Fq 'pinned local runtime manager for project commands: `.venv` for Python, Volta for Node/npm when configured.' AGENTS.md; then
     fail "legacy runtime guidance must not remain in section 11"
