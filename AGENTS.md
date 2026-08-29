@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-08-28
+Template version: 2026-08-29
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -171,3 +171,4 @@ No `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile` exists in this 
 ## 11. Project Learnings
 
 - In every installed project, before declaring a branch ready, verify it is based on the intended PR target, confirm remote mergeability, and inspect actual CI checks; local tests alone are insufficient.
+- When writing a pull-request body, use real line breaks and verify the rendered result; never submit literal escape sequences such as `\n`.
