@@ -1,15 +1,8 @@
 # docs/AGENTS.md
 
-This file defines where agents store work records: plans, prompts, bugfix notes, and execution summaries.
-It does not replace root `AGENTS.md`; root `AGENTS.md` remains the source of truth for agent behavior.
+This file governs agent-created work artifacts under `docs/agents/`; root `AGENTS.md` remains the source of truth for agent behavior. Product documentation, API docs, architecture docs, and user-facing docs stay in their appropriate locations outside `docs/agents/`.
 
-The artifact location, naming, header, plan, source-of-truth, and maintenance rules in this file apply only under `docs/agents/`. The `docs/postmortem/` subtree is explicitly delegated to `docs/postmortem/AGENTS.md`, which owns its separate naming and content schema. The **Doc Review Criteria** apply outside `docs/agents/` only when work changes product, API, architecture, or user-facing documentation; they do not replace a delegated subtree's schema.
-
-Use this structure only for agent-created work artifacts. Product documentation, API docs, architecture docs, and user-facing docs should live in their own appropriate locations under `docs/`.
-
-The `docs/agents/` namespace is reserved for agent artifacts, and every artifact carries a `STATUS-` filename prefix, so temporary or historical agent notes do not look like canonical project documentation. Do not mix product documentation into it.
-
-When agent work produces or modifies any project documentation, the **Doc Review Criteria** section below also applies before the work can be marked `executed`.
+The `docs/postmortem/` subtree is explicitly delegated to `docs/postmortem/AGENTS.md`, which owns its separate naming and content schema. The **Doc Review Criteria** also apply whenever agent work changes product, API, architecture, or user-facing documentation.
 
 ## Directory Rules
 
@@ -77,10 +70,10 @@ Every artifact must state status, type, and author near the top:
 ```markdown
 Status: planned
 Type: feature
-Author: <name-or-handle>
+Author: <git-user-name>
 ```
 
-`Author` identifies the human responsible for the artifact's current contents. Use a real handle. When an agent edits a human-owned artifact, the human remains the author; the edit is captured in git history, not in this field. Update `Author` only when ownership actually transfers to a different person.
+`Author` identifies the human responsible for the artifact's current contents. Set it to the non-empty output of `git config user.name` in the repository. If that value is unset, ask the user; do not infer a name or hosting-account handle. When an agent edits a human-owned artifact, the human remains the author; the edit is captured in git history, not in this field. Update `Author` only when ownership actually transfers to a different person.
 
 Allowed statuses:
 
@@ -183,12 +176,10 @@ When starting work from an artifact, read its status and current accuracy first.
 
 When completing work, update documentation before ending the session:
 
-- Rename the artifact so its filename status matches the final status.
-- Update the artifact to `executed` or `obsolete`.
-- Add or refresh `Outcome` and `Current Accuracy`.
+- Apply the **File Naming** and **Source Of Truth** requirements so the filename, status, outcome, and current accuracy agree.
 - Update the implementation plan, `README.md`, and affected product or project docs so they match the shipped result.
 - When the work touched project documentation, verify each affected doc against the **Doc Review Criteria** before marking the artifact `executed`.
 
 When a later change makes an executed artifact inaccurate, either update its `Current Accuracy` section or mark it `obsolete`. Do not leave stale plans looking authoritative.
 
-Delete `obsolete` artifacts once the work they describe is no longer being reread for context. Git history preserves the record. Stale plans living next to active ones confuse new contributors more than they help.
+Propose deletion of `obsolete` artifacts once the work they describe is no longer useful as context. Do not delete them unless the user includes deletion in scope. Git history preserves removed records, while stale plans living next to active ones can confuse new contributors.

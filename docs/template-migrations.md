@@ -48,3 +48,15 @@ If the project uses an issue tracker and the user wants its workflow captured:
 3. Preserved sections are never edited automatically: show the section 10 addition and apply it only after approval.
 
 If the project has no tracker, no action is needed beyond the root-only text update.
+
+## 2026-08-28: Git Author Identity and Instruction Cleanup
+
+Template version `2026-08-28` uses the configured Git author name for agent artifact ownership, requires agents to discover instructions along the target file's path, makes obsolete-artifact deletion proposal-only, clarifies that branch-readiness verification applies to every installed project, and removes reusable guidance duplicated inside section 10.
+
+The automatic root-only update applies the privacy and instruction-discovery wording but preserves sections 10 and 11 and does not replace auxiliary files. For existing installations, inspect each applicable change and apply it only after approval:
+
+1. If `docs/AGENTS.md` is installed, change the artifact header to `Author: <git-user-name>` and source it from the non-empty output of `git config user.name`. If the value is unset, require the agent to ask instead of inferring a name or hosting-account handle.
+2. Replace any automatic instruction to delete obsolete artifacts with a proposal-only rule. Deletion remains subject to the user's requested scope.
+3. If section 11 contains the exact earlier branch-readiness learning, clarify that it applies in every installed project without changing its verification requirements.
+4. In section 10, remove reusable hierarchy, compatibility-symlink, and artifact-schema rules only when they duplicate the current root guidance exactly. Preserve project-specific conventions and edited local variants.
+5. Update an installed copy of the template README only when it is intentionally used as local installation documentation; do not overwrite a project's own README.
