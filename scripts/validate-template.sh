@@ -142,6 +142,7 @@ grep -Fq '## 2026-08-28: Git Author Identity and Instruction Cleanup' docs/templ
 grep -Fq 'A configured Git author name may be used where project documentation requires attribution.' AGENTS.md || fail "AGENTS.md must allow configured Git author names for documentation attribution"
 grep -Fq 'Before editing a target file, read the instruction chain from the project root through its directory' AGENTS.md || fail "AGENTS.md must require target-path instruction discovery"
 grep -Fq 'In every installed project, before declaring a branch ready' AGENTS.md || fail "branch readiness guidance must explicitly apply to every installed project"
+grep -Fq 'When writing a pull-request body, use real line breaks and verify the rendered result; never submit literal escape sequences such as `\n`.' AGENTS.md || fail "pull-request bodies must forbid literal newline escapes"
 
 for duplicate_rule in \
     'Reusable rules and design guidance belong at the highest applicable `AGENTS.md`' \
