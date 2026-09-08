@@ -60,3 +60,12 @@ The automatic root-only update applies the privacy and instruction-discovery wor
 3. If section 11 contains the exact earlier branch-readiness learning, clarify that it applies in every installed project without changing its verification requirements.
 4. In section 10, remove reusable hierarchy, compatibility-symlink, and artifact-schema rules only when they duplicate the current root guidance exactly. Preserve project-specific conventions and edited local variants.
 5. Update an installed copy of the template README only when it is intentionally used as local installation documentation; do not overwrite a project's own README.
+
+## 2026-09-08: Project Ontology
+
+The root navigation rules now require a separate, project-specific ontology. The root-only instruction update preserves sections 10 and 11; ontology content must be derived from the target repository rather than copied from this template.
+
+1. Look for an existing equivalent in the project's documentation and reuse it in place. Do not move or rename existing documentation merely to adopt the default path.
+2. If no equivalent exists, inspect `docs/ontology.md` before creating it. If that path contains unrelated content, stop and ask for a destination rather than overwriting it.
+3. Populate the ontology using the root rules, beginning with verified project entry points and the current work area. State coverage and unknowns; keep it as maintained project documentation outside the status-prefixed work artifact schema.
+4. Verify referenced paths, symbols, and relationships against the repository. No auxiliary instruction replacement, symlink change, or edit to preserved sections is required.

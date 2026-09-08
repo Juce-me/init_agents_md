@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Template version: 2026-08-29
+Template version: 2026-09-08
 
 Drop-in operating instructions for coding agents. Read this file before every task.
 
@@ -38,6 +38,16 @@ These rules override later guidance in this file:
 - Before editing a target file, read the instruction chain from the project root through its directory, including nested `AGENTS.md` files the runtime did not load automatically. Then read the target file and relevant callers or consumers.
 - Check the worktree and preserve unrelated changes. If required work overlaps uncertain user edits, stop and ask.
 - When approaches differ materially, explain the tradeoff and recommend one. Do not add ceremony for trivial, reversible edits.
+
+### Project ontology and navigation
+
+- Each project must maintain its own ontology separately from `AGENTS.md`: a compact map of its concepts, implementation locations, and relationships. Reuse an existing equivalent in the project's documentation layout; otherwise create `docs/ontology.md`. Inspect the destination first and preserve existing content. Build it from the actual repository on first use, starting with verified project entry points and the area being worked on; state coverage and unknowns rather than implying completeness. This is maintained project documentation, not a status-prefixed work artifact.
+- For each mapped concept, record its canonical name, brief meaning, verified aliases, implementation entry points, relevant contracts and tests, and relationships such as `depends on`, `produces`, or `consumes`. Use repository-relative links and symbol names as evidence; record ownership only when explicitly documented. Keep entries concise and link to existing documentation instead of duplicating it.
+- Before editing, consult the ontology's relevant entries, then verify them against current sources. If an entry is missing or stale, inspect the repository and correct it. Update affected entries and links when a change adds, renames, moves, or removes a mapped concept or relationship; record the verification date for entries reviewed and check that their paths and symbols resolve before finishing.
+- Map the task's domain terms to the project's canonical names using existing documentation, symbols, schemas, and tests. Search verified aliases when terminology differs; do not invent equivalences or infer responsibility from filenames alone.
+- Locate the relevant entry point, then trace the callers, dependencies, data flow, and tests needed to understand the requested change. Use targeted searches and reads; broaden the search when evidence is missing or contradicts the initial scope.
+- Verify module responsibilities, dependency direction, and ownership from implementation, contracts, and explicit repository records such as `CODEOWNERS`. Treat undocumented relationships or ownership as unknown rather than guessing.
+- Use the ontology, existing indexes, and architecture docs to locate sources, then verify relevant claims against current implementation and tests. The ontology is a navigation aid; it does not override instructions or contracts. Report material conflicts and resolve them before relying on the disputed claim.
 
 ---
 
@@ -89,6 +99,7 @@ These rules override later guidance in this file:
 - Apply only a root-file text update automatically, preserving sections 10 and 11. Get approval before moving files, replacing auxiliary instructions, changing symlinks, editing preserved sections, or resolving collisions. If either version is missing or comparison is uncertain, show the proposed change instead of applying it.
 - Use subagents only when the runtime provides them and the task divides into independent, bounded work. Keep trivial and documentation-only corrections inline, and close completed agents when the runtime supports it.
 - After two failed attempts on the same issue, stop, summarize the evidence, and ask for direction.
+- At session start, check whether documents marked GATE or gated (work blocked by an unmet prerequisite) are due for weekly review. Review documents with no recorded review date immediately; otherwise review on or after the recorded next review date, at the first active session. Gather current evidence about each gate, assess whether it can now be resolved, and update the document with findings, remaining blockers, the review date, and the next review date. Clear a gate only when evidence confirms its prerequisites are satisfied; request any required decision or authorization before proceeding. Set the next review to Monday of the following calendar week in the project's local timezone, not seven days after the review: a Tuesday review is next due the following Monday, and a Monday review is next due one week later.
 
 ---
 

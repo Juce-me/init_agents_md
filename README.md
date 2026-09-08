@@ -40,6 +40,8 @@ To install, copy-paste in your vibe-coding environment:
 > Leave anything that cannot be confirmed as `TODO`.
 > Remove source-repository entries for files that were not installed, including `presets/`, `scripts/`, and optional documentation workflows.
 >
+> Build a project-specific ontology following section 1 of `AGENTS.md`. Reuse an existing equivalent or create `docs/ontology.md` after checking the destination. Derive its concepts, entry points, relationships, contracts, and tests from the target repository; do not copy a map of this template repository. Start with verified entry points and the area being worked on, state coverage and unknowns, and maintain affected entries as the project changes. Keep the ontology separate from `AGENTS.md` and status-prefixed work artifacts.
+>
 > Keep development and test artifacts inside the project: tests under `tests/`, disposable scratch work under `tmp/`, and command examples using repo-relative paths. Ensure `tmp/` is listed in `.gitignore` before using it.
 >
 > Do not add project learnings during installation. Preserve section 11 as shipped; add a learning only after a concrete correction in the target project.
